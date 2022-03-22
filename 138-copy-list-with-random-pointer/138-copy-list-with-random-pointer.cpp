@@ -60,6 +60,6 @@ public:
              copy=copy->next;
              ptr=ptr->next;
          }
-         return cur;
+         return cur;// TC - O(N) , SC - O(1)
      }
 };
