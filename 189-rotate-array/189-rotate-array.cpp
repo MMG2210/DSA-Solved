@@ -21,9 +21,9 @@ public:
         for(int it=0;it<n;it++)
             nums[it]=t[it]; // TC O(N) , SC O(N)*/
         k %=nums.size();
-        reverse(nums.begin(), nums.end());//4 3 2 1 5 6 7
-        reverse(nums.begin(), nums.begin()+k); // 4 3 2 1 7 6 5
-        reverse(nums.begin()+k, nums.end()); // 5 6 7 1 2 3 4 is the required soln
+        reverse(nums.begin(), nums.end());//4 3 2 1 5 6 7 rev first n-k elements
+        reverse(nums.begin(), nums.begin()+k); // 4 3 2 1 7 6 5 rev remaining elements
+        reverse(nums.begin()+k, nums.end()); // 5 6 7 1 2 3 4 rev the entire array and it is the                                                     required soln
         //TC O(N) SC O(1)
     }
 };
