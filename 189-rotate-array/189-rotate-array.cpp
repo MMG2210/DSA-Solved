@@ -1,7 +1,7 @@
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
-        int i=0,n=nums.size();
+        /*int i=0,n=nums.size();
         if(k>n)k=k%n;
         stack<int> s;
         int j=n-1;
@@ -19,6 +19,11 @@ public:
         for(int it=0;it<n-k;it++)
             t.push_back(nums[it]);
         for(int it=0;it<n;it++)
-            nums[it]=t[it];
+            nums[it]=t[it]; // TC O(N) , SC O(N)*/
+        k %=nums.size();
+        reverse(nums.begin(), nums.end());//4 3 2 1 5 6 7
+        reverse(nums.begin(), nums.begin()+k); // 4 3 2 1 7 6 5
+        reverse(nums.begin()+k, nums.end()); // 5 6 7 1 2 3 4 is the required soln
+        //TC O(N) SC O(1)
     }
 };
