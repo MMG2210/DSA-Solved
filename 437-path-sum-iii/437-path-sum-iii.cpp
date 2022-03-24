@@ -20,7 +20,7 @@ public:
         getsum(root->left,sum-root->val);
         getsum(root->right,sum-root->val);
     }
-    int pathSum(TreeNode* root, int sum) {//perform simple dfs checking for each node
+    int pathSum(TreeNode* root, int &sum) {//perform simple dfs checking for each node
         if(root){
             getsum(root,sum);
             pathSum(root->left,sum);
