@@ -35,5 +35,6 @@ public:
     //so we take an array that is initialized with amnt+1. We take min for possible cases
     //So if the amnt is possible then we are left with the ans in dp[amnt] else
     //dp[amnt]>amnt as amnt is initialized with amnt+1.
+    //This makes use of the same TC as the previous case but with a space complexity of O(amnt);
     }
 };
