@@ -2,6 +2,8 @@ class Solution {
 public:
     bool binarySearch(vector<vector<int>>& matrix, int row, int col, int target){
         int s = 0, e = col-1;
+        if(target > matrix[row][e])return false;
+        if(target < matrix[row][s])return false;
         while(s<=e)
         {
             int m = s + (e-s)/2;
