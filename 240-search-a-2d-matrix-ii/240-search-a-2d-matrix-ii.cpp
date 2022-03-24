@@ -35,5 +35,9 @@ public:
             matrix[r][c] > target ? c-- : r++;
         }
         return false;
+    //This approach uses the fact that the matrix is sorted in both column and rows.
+    //So if target is smaller than top value of a column then check another col else check the next row of the same column
+    //Worst case Time Complexity is O(m+n) Runtime = 160ms;
+    //Worst case Space Complexity is O(1) as no extra space is used;
     }
 };
