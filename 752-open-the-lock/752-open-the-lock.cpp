@@ -1,7 +1,6 @@
 class Solution {
 public:
     int openLock(vector<string>& deadends, string target) {
-        int res;
         unordered_set<string> deads(deadends.begin(),deadends.end()),vis;
         if(deads.find("0000")!=deads.end())return -1;
         if(target=="0000")return 0;
