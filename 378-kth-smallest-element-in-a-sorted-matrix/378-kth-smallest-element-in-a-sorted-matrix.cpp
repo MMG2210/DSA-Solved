@@ -16,6 +16,7 @@ public:
             }
         }
         return pq.top();
+        TC = O(n*n*logk) SC = O(k)
     }*/
     int kthSmallest(vector<vector<int>>& matrix, int k){
         int n =matrix.size();
@@ -31,5 +32,6 @@ public:
             else high = mid;
         }
         return low;
+    //TC = O(n*logk) SC = O(1)
     }
 };
