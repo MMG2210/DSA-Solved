@@ -29,5 +29,6 @@ public:
             nextNotBuy=curNotBuy;
         }
         return curBuy;
+        //TC is same as top-down but SC o(1)
     }
 };
