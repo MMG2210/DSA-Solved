@@ -36,5 +36,5 @@ public:
                 //2%2=0(dead) and similarly 3%2=1(alive).
             }
         }
-    }//TC is O(N^2) while SC is O(1)
+    }//TC is O(m*n) while SC is O(1)
 };
