@@ -18,13 +18,12 @@ public:
 
 class Solution {
 public:
-    /*Node* connect(Node* root) {
+    Node* connect(Node* root) {
         if(root==NULL)return root;
         queue<Node*> q;
         q.push(root);
         q.push(NULL);
         while(!q.empty()){
-            int s = q.size();
             Node* temp = q.front();q.pop();
             if(temp){
                 if(temp->left)q.push(temp->left);
@@ -37,9 +36,9 @@ public:
             }
         }
         return root;
-        TC - O(N),SC - O(N)
-    }*/
-    Node* connect(Node* root){
+        //TC - O(N),SC - O(N)
+    }
+    /*Node* connect(Node* root){
         if(!root)return NULL;
         Node* p = root->next;
         while(p){
@@ -58,5 +57,6 @@ public:
         connect(root->right);
         connect(root->left);
         return root;
-    }
+    TC = O(N) , SC = O(1) , Auxilary Space = O(N)recursion
+    }*/
 };
