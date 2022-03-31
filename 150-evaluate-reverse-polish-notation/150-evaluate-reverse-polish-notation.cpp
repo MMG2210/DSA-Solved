@@ -36,5 +36,6 @@ public:
             }
         }
         return stoi(tokens[0]);
+    //TC is still O(N) but SC is O(1) but modified space is O(N);
     }
 };
