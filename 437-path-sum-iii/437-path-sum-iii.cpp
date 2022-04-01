@@ -12,7 +12,7 @@
 class Solution {
 public:
     int pathcount;
-    void getsum(TreeNode* root, int sum){//checking paths at each node.
+    void getsum(TreeNode* root, long sum){//checking paths at each node.
         if(!root)return;
         if(root->val==sum){
             pathcount++;
@@ -20,7 +20,7 @@ public:
         getsum(root->left,sum-root->val);
         getsum(root->right,sum-root->val);
     }
-    int pathSum(TreeNode* root, int &sum) {//perform simple dfs checking for each node
+    int pathSum(TreeNode* root, long sum) {//perform simple dfs checking for each node
         if(root){
             getsum(root,sum);
             pathSum(root->left,sum);
