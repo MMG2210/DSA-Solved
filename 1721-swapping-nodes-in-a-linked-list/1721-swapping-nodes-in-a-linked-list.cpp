@@ -11,14 +11,14 @@
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-        ListNode *f=head, *s=head, *sf = head;
+        ListNode *f=head, *s=head, *sf = head;//f-fast ptr,s-slow ptr, sf-slow ptr from starting
         int i=0;
         while(i<k-1){
             f=f->next;
             sf=sf->next;
             i++;
         }
-        while(f!=NULL && f->next!=NULL){
+        while(f->next!=NULL){
             f=f->next;
             s=s->next;
         }
