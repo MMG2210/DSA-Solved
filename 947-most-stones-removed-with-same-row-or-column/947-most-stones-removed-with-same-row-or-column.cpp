@@ -2,7 +2,7 @@ class Solution {
 public:
     int removeStones(vector<vector<int>>& stones) {
         for (int i = 0; i < stones.size(); ++i)
-            uni(stones[i][0], ~stones[i][1]);
+            uni(stones[i][0], 10000+stones[i][1]);
         return stones.size() - islands;
     }
 
