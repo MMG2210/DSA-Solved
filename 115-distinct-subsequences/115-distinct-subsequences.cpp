@@ -9,7 +9,7 @@ public:
             return dp[l1][l2]=helper(s,t,l1-1,l2-1,dp)+helper(s,t,l1-1,l2,dp);
         }
     }
-    int numDistinct(string s, string t) {
+    /*int numDistinct(string s, string t) {
         int m = t.size(), n = s.size();
         vector<vector<unsigned long long>> dp(m+1,vector<unsigned long long>(n+1,-1));
         for(int i=0;i<=n;i++){
@@ -24,5 +24,19 @@ public:
             }
         }
         return dp[m][n];
+    }*/
+    int numDistinct(string s, string t) {
+        int m = t.size(), n = s.size();
+        vector<unsigned long long> dp(m+1,0);
+        dp[0]=1;
+        for(int j=1;j<=n;j++){
+            int prev=1;
+            for(int i=1;i<=m;i++){
+                int temp = dp[i];
+                dp[i]=dp[i] + (s[j-1]==t[i-1]?prev:0);
+                prev=temp;
+            }
+        }
+        return dp[m];
     }
 };
