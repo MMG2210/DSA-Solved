@@ -17,6 +17,6 @@ public:
 			grid[i][j] = data[i*c+j];
 		}
 	}
-	return grid;
+	return move(grid);
 }
 };
