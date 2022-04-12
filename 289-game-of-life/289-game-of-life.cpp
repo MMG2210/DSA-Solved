@@ -11,7 +11,7 @@ public:
                     count++;// the original state but dead in new/next state.
             }
                  
-        return count;
+        return move(count);
     }
     void gameOfLife(vector<vector<int>>& board) {
         int n=board.size();
