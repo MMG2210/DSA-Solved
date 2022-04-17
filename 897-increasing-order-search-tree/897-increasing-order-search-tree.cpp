@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    vector<int> ascOrder;
+    /*vector<int> ascOrder;
     void inOrder(TreeNode* root){
         if(!root)return;
         inOrder(root->left);
@@ -29,6 +29,12 @@ public:
             cur->right=temp;
             cur=cur->right;
         }
-        return newRoot;
+        return newRoot;*/
+    TreeNode* increasingBST(TreeNode* root, TreeNode* tail = NULL) {
+        if (!root) return tail;
+        TreeNode* res = increasingBST(root->left, root);
+        root->left = NULL;
+        root->right = increasingBST(root->right, tail);
+        return res;
     }
 };
