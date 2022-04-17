@@ -17,6 +17,7 @@ public:
         inOrder(root->left);
         ascOrder.push_back(root->val);
         inOrder(root->right);
+        return;
     }
     TreeNode* increasingBST(TreeNode* root) {
         if(!root)return root;
