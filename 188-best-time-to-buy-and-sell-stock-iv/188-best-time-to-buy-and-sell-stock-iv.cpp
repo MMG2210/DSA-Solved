@@ -7,13 +7,13 @@ public:
         
         if(dp[ind][cur]!=-1)return dp[ind][cur];
         
-        if(cur%2==0){//We can buy
+        if(cur%2==0){//We can choose to buy
             int buyVal,leaveVal;
             buyVal=-prices[ind]+solve(prices,kt,ind+1,cur+1,dp);
             leaveVal=solve(prices,kt,ind+1,cur,dp);
             return dp[ind][cur] = max(buyVal,leaveVal);
         }
-        else{
+        else{//We can chose to sell
             int sellVal,leaveVal;
             sellVal=prices[ind]+solve(prices,kt,ind+1,cur+1,dp);
             leaveVal=solve(prices,kt,ind+1,cur,dp);
@@ -24,7 +24,7 @@ public:
     
     int maxProfit(int k, vector<int>& prices) {
         //vector<vector<vector<int>>> dp(prices.size()+1,vector<int>(k+1,vector<int>(2,-1)));
-        int kt=2*k;
+        int kt=2*k;//Max possible transcations is 2 x No of allowed transactions
         vector<vector<int>> dp(prices.size()+1,vector<int>(kt,-1));
         return solve(prices,kt,0,0,dp);
     }
