@@ -13,12 +13,12 @@ class BSTIterator {
 private:
     TreeNode* Root=NULL;
     int iter=0;
-    vector<int> inOrder;
+    queue<int> inOrder;
     int n;
     void traverse(TreeNode* root){
         if(!root)return;
         traverse(root->left);
-        inOrder.push_back(root->val);
+        inOrder.push(root->val);
         traverse(root->right);
         return;
     }
@@ -31,12 +31,16 @@ public:
     }
     
     int next() {
-        if(hasNext())return inOrder[iter++];
+        if(hasNext()){
+            int res=inOrder.front();
+            inOrder.pop();
+            return res;
+        }
         return NULL;
     }
     
     bool hasNext() {
-        if(iter<n)return true;
+        if(inOrder.size()>0)return true;
         else return false;
     }
 };
