@@ -9,7 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class BSTIterator {
+/*class BSTIterator {
 private:
     TreeNode* Root=NULL;
     int iter=0;
@@ -38,6 +38,37 @@ public:
     bool hasNext() {
         if(iter<n)return true;
         else return false;
+    }
+};*/
+
+class BSTIterator {
+public:
+    stack<TreeNode*> st;
+    BSTIterator(TreeNode* root) {
+        TreeNode* cur=root;
+        while(cur){
+            st.push(cur);
+            cur=cur->left;
+        }
+    }
+    
+    int next() {
+        auto temp=st.top();
+        st.pop();
+        int res=temp->val;
+        if(temp->right){
+            temp=temp->right;
+            while(temp){
+                st.push(temp);
+                if(temp->left)temp=temp->left;
+                else break;
+            }
+        }
+        return res;
+    }
+    
+    bool hasNext() {
+        return !st.empty();
     }
 };
 
