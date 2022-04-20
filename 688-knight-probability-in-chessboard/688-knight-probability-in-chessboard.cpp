@@ -5,8 +5,6 @@ public:
             int new_c=r+dx[i];
             res+=solve(new_r,new_c,new_k,n,dp);
         }*/
-    int dy[8]={-2,-1,1,2,-2,-1,1,2};
-    int dx[8]={-1,-2,-2,-1,1,2,2,1};
     bool isValid(int r, int c, int n){
         return r>=0 && r<n && c>=0 && c<n; 
     }
