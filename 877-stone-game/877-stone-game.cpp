@@ -16,6 +16,12 @@ public:
     
     bool stoneGame(vector<int>& piles) {
         sort(begin(piles),end(piles));
-        return solve(piles,piles.size()-1);
+        int res=0;
+        //return solve(piles,piles.size()-1);
+        for(int ind=piles.size()-1;ind>-1;ind--){
+            if(ind%2)res+=piles[ind];
+            else res-=piles[ind];
+        }
+        return res>0;
     }
 };
