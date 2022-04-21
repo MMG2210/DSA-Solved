@@ -15,13 +15,13 @@ public:
     
     
     bool stoneGame(vector<int>& piles) {
-        //sort(begin(piles),end(piles));
+        sort(begin(piles),end(piles));
         int res=1;
         //return solve(piles,piles.size()-1);
-        /*for(int ind=piles.size()-1;ind>-1;ind--){
+        for(int ind=piles.size()-1;ind>-1;ind--){
             if(ind%2)res+=piles[ind];
             else res-=piles[ind];
-        }*/
+        }
         return res>0;
     }
 };
