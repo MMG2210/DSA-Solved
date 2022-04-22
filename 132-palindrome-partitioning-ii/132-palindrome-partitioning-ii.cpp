@@ -1,5 +1,6 @@
 class Solution {
 public:
+    vector<vector<int>> dp;
     bool isPalin(string& s, int st, int e){
         //int l=0,r=s.size()-1;
         while(st<e){
@@ -23,7 +24,7 @@ public:
     
     int minCut(string s) {
         int n=s.size();
-        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        dp.resize(n+1,vector<int>(n+1,-1));
         return helper(s,0,n-1,dp);
         //return dp[0][n];
     }
