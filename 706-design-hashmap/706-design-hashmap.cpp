@@ -13,7 +13,7 @@ public:
     }
     
     int get(int key) {
-        return hash[key]>=0?hash[key]:-1;
+        return hash[key];
     }
     
     void remove(int key) {
