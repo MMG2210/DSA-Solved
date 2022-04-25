@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int totalFruit(vector<int>& fruits) {
+    /*int totalFruit(vector<int>& fruits) {
         int cur=0,res=0,lastFruit=-1,secondLastFruit=-1,lastFruitCount=0;
         
         for(int& f:fruits){
@@ -23,5 +23,17 @@ public:
             res=max(cur,res);
         }
         return res;
+    }*/
+    int totalFruit(vector<int>& fruits) {
+        unordered_map<int,int> taken;
+        int n=fruits.size(),i,j;
+        for(i=0,j=0;j<n;j++){
+            taken[fruits[j]]++;
+            if(taken.size()>2){
+                if(--taken[fruits[i]]==0)taken.erase(fruits[i]);
+                i++;
+            }
+        }
+        return j-i;
     }
 };
