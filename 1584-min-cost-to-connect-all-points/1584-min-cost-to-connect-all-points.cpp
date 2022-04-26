@@ -25,10 +25,7 @@ public:
             vis[node]=true;
             res+=cost;
             for(auto& it:adj[node]){
-                if(vis[it.first])continue;
-                else{
-                    edges.push({it.second,it.first});
-                }
+                if(!vis[it.first])edges.push({it.second,it.first});
             }
         }
         
