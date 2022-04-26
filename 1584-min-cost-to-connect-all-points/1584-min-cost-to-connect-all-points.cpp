@@ -13,16 +13,17 @@ public:
         }
         
         vector<bool> vis(n,false);
-
+        int falseCount=n;
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> edges;
         edges.push({0,0});
         
-        while(!edges.empty()){
+        while(!edges.empty() && falseCount){
             pair<int,int> t=edges.top(); edges.pop();
             int node=t.second;
             int cost=t.first;
             if(vis[node])continue;
             vis[node]=true;
+            falseCount--;
             res+=cost;
             for(auto& it:adj[node]){
                 if(!vis[it.first])edges.push({it.second,it.first});
