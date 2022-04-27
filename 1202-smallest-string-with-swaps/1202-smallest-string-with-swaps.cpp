@@ -1,56 +1,47 @@
 class Solution {
 public:
-    int findParent(int a,vector<int> &parent)
-{
-    if(a == parent[a]) return a;
-    
-    return parent[a] = findParent(parent[a],parent);
-}
-
-string smallestStringWithSwaps(string str, vector<vector<int>>& pairs) {
-    
-    int n = str.size();
-    vector<int> parent(n,0);
-    
-    for(int i = 0;i<n;i++){
-        parent[i] = i;
+    int findPar(int i, vector<int>& par){
+        if(par[i]==i)return i;
+        else return par[i]=findPar(par[i],par);
     }
-    
-    for(auto x: pairs){
-        int u = x[0];
-        int v = x[1];
+    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
+        vector<int> par(s.size());
+        for(int i=0;i<s.size();i++)par[i]=i;
         
-        int p1 = findParent(u,parent);
-        int p2 = findParent(v,parent);
-        
-        if(p1!=p2)
-            parent[p1] = p2;
-    }
-    
-    vector<vector<int>> v(n);
-    for(int i = 0;i<n;i++){
-        int u = findParent(i,parent);
-        
-        v[u].push_back(i);
-    }
-  
-    for(auto x: v){
-        string ss;int j = 0;
-        
-        for(auto y : x){
-            ss += str[y];
+        for(auto& p:pairs){
+            int u=p[0],v=p[1];
+            int uPar=findPar(u,par);
+            int vPar=findPar(v,par);
+            if(vPar!=uPar){
+                par[uPar]=vPar;
+            }
         }
         
-        sort(ss.begin(),ss.end());
+        vector<vector<int>> group(s.size());
         
-        for(auto y: x){
-            str[y] = ss[j++];
+        for(int i=0;i<s.size();i++){
+            int parent=findPar(i,par);
+            group[parent].push_back(i);
         }
         
+        string res=s;
+        
+        for(auto& g:group){
+            string temp="";
+            int j=0;
+            
+            for(auto& val:g){
+                temp+=s[val];
+            }
+            
+            sort(temp.begin(),temp.end());
+            
+            for(auto& val:g){
+                res[val]=temp[j++];
+            }
+            
+        }
+        
+        return res;
     }
-    
-    return str;
-
-}
-
 };
