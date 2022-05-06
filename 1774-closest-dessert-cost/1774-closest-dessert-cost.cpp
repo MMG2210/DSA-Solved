@@ -21,7 +21,8 @@ public:
     int closestCost(vector<int>& baseCosts, vector<int>& tC, int target) {
         t=target;
         int res=0;
-        for(int& bc:baseCosts){
+        for(int i=0;i<baseCosts.size();i++){
+            int bc=baseCosts[i];
             res=closest(res, recur(tC,0,bc));
         }
         
