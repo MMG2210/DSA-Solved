@@ -1,12 +1,12 @@
 class Solution {
 public:
     int arraySign(vector<int>& nums) {
-        int cntNeg=0;
+        int sign=1;
         for(int& n:nums){
             if(n==0)return 0;
-            if(n<0)cntNeg++;
+            if(n<0)sign*=-1;
         }
         
-        return cntNeg%2==0?1:-1;
+        return sign;
     }
 };
