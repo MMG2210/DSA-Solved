@@ -13,31 +13,17 @@ class Solution {
 public:
     int res=0;
     
-    void getAverage(TreeNode* root){
-        if(!root)return;
+    pair<int,int> getAverage(TreeNode* root){
+        if(!root)return {0,0};
         
-        long long avg=0; int countNodes=0;
-        queue<TreeNode*> q;
-        q.push(root);
+        auto l_sub = getAverage(root->left);
+        auto r_sub = getAverage(root->right);
         
-        while(!q.empty()){
-            auto node = q.front();
-            q.pop();
-            
-            avg+=node->val;
-            countNodes++;
-            
-            if(node->left)q.push(node->left);
-            if(node->right)q.push(node->right);
-        }
+        int sum = l_sub.first + r_sub.first + root->val;
+        int cnt = l_sub.second + r_sub.second + 1;
+        if(root->val==sum/cnt)res++;
         
-        avg/=countNodes;
-        
-        if(root->val==avg)res++;
-        
-        getAverage(root->left);
-        getAverage(root->right);
-        return;
+        return {sum,cnt};
     }
     
     int averageOfSubtree(TreeNode* root) {
