@@ -2,12 +2,12 @@ class Solution {
 public:
     
     bool isValid(vector<int>& candies, long long k, int minCandy){
-        int n = candies.size(), sum=candies[0];
-        long long children=1;
+        int n = candies.size();
+        long long piles=0;
         
         for(int i=0;i<n;i++){
-            children+=candies[i]/minCandy;
-            if(children>k)return true;
+            piles+=candies[i]/minCandy;
+            if(piles>=k)return true;
         }
         
         return false;
