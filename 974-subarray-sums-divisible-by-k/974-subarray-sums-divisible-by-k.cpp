@@ -4,7 +4,7 @@ public:
         vector<int> count(K);
         count[0] = 1;
         int prefix = 0, res = 0;
-        for (int a : A) {
+        for (int& a : A) {
             prefix = (prefix + a % K + K) % K;
             res += count[prefix]++;
         }
