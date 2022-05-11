@@ -20,21 +20,24 @@ public:
     
     const string vowel="aeiou"; 
     const  int vowels = sz(vowel);
+    const int mod = 1e9+7;
     
-    
-    int count(int ind,int words,int n){
+    int count(int ind,int words,int n, vector<vi>& dp){
         if(ind>vowels || words==n)return 1;
         
+        if(dp[words][ind]!=-1)return dp[words][ind];
         int sum=0;
         
         for(int i=ind;i<vowels;i++){
-            sum+=count(i,words+1,n);
+            sum+=count(i,words+1,n,dp);
+            sum%=mod;
         }
         
-        return sum;
+        return dp[words][ind]=sum;
     }
     
     int countVowelStrings(int n) {
-        return count(0,0,n);
+        vector<vi> dp(n+1,vi(5,-1));
+        return count(0,0,n,dp);
     }
 };
