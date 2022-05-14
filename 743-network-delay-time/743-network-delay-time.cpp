@@ -1,35 +1,32 @@
 class Solution {
 public:
-    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
-        vector<pair<int,int>> g[N+1];
-        for(int i=0;i<times.size();i++)
-            g[times[i][0]].push_back(make_pair(times[i][1],times[i][2]));
-        vector<int> dist(N+1, 1e9);
-        dist[K] = 0;
-        priority_queue<pair<int,int>, vector<pair<int,int>> , greater<pair<int,int>>> q;
-        q.push(make_pair(0,K));
-        pair<int,int> temp;
-        bool visit[N+1];
-        memset(visit, false, sizeof(visit));
-        while(!q.empty()){
-            temp = q.top();
-            q.pop();
-            int u = temp.second;
-            visit[u] = true;
-            for(int i=0;i<g[u].size();i++){
-                int v = g[u][i].first;
-                int weight = g[u][i].second;
-                if(visit[v]==false && dist[v] > dist[u] + weight){
-                    dist[v] = dist[u] + weight;
-                    q.push(make_pair(dist[v], v));
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        vector<int> dist(n+1,1e9);
+        vector<vector<pair<int,int>>> adj(n+1);
+        for(auto& t:times){
+            adj[t[0]].push_back({t[1],t[2]});
+        }
+        
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+        dist[k]=0;
+        pq.push({0,k});
+        while(!pq.empty()){
+            int w=pq.top().first;
+            int node=pq.top().second;
+            pq.pop();
+            for(auto& a:adj[node]){
+                if(dist[a.first]>(w+a.second)){
+                    dist[a.first]=w+a.second;
+                    pq.push({dist[a.first],a.first});
                 }
             }
         }
-        int ans = 0;
-        for(int i=1;i<dist.size();i++){
-            ans = max(ans, dist[i]);
+        
+        int res=0;
+        for(int i=1;i<=n;i++){
+            res=max(res,dist[i]);
         }
-        if(ans==1e9) return -1;
-        return ans;
+        
+        return res==1e9?-1:res;
     }
 };
