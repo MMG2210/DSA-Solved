@@ -31,7 +31,7 @@ public:
 //             if(count<n)res.push_back(exclude);
 //         }
 //         return res;
-//     } Straight-up DFS TC - O(E*(V+E));
+//     } Straight-up DFS TC - O(E*(V+E)) effectively making it a Quadratic time solution
     
     void tarjans(int curr, int parent, int time, vector<vector<int>>& adj, vector<int>& low, vector<vector<int>>& res){
         low[curr]=time++;
@@ -59,4 +59,5 @@ public:
         tarjans(0,-1,1,adj,low,res);
         return res;
     }
+    //Tarjan's Algorithm uses time complexity of O(E+V) effectively making it a Linear time solution. 
 };
