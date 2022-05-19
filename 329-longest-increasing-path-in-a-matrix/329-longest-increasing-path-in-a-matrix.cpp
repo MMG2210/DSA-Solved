@@ -1,7 +1,7 @@
 class Solution {
 public:
     int res=INT_MIN;
-    int mod = 1e9+7;
+    //int mod = 1e9+7;
     
     int dp[201][201];
     
@@ -18,7 +18,7 @@ public:
         len=max(len,dfs(matrix, i+1, j, matrix[i][j]));
         len=max(len,dfs(matrix, i, j-1, matrix[i][j]));
         len=max(len,dfs(matrix, i, j+1, matrix[i][j]));
-        return dp[i][j] = (1+len)%mod;
+        return dp[i][j] = 1+len;
     }
     
     int longestIncreasingPath(vector<vector<int>>& matrix) {
