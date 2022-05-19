@@ -10,8 +10,7 @@ public:
     }
     
     int dfs(vector<vector<int>>& matrix, int i, int j, int prev){
-        if(isInvalid(matrix,i,j))return 0;
-        if(prev>=matrix[i][j])return 0;
+        if(isInvalid(matrix,i,j) || prev>=matrix[i][j])return 0;
         if(dp[i][j]!=-1)return dp[i][j];
         
         int len=0;
