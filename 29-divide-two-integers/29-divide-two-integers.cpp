@@ -1,9 +1,20 @@
 class Solution {
 public:
     int divide(int dividend, int divisor) {
-        long long temp = ((1LL*dividend)/divisor);
-        if(temp>INT_MAX)return INT_MAX;
-        else if (temp<INT_MIN)return INT_MIN;
-        else return (int)temp;
+        if (dividend == INT_MIN && divisor == -1) {
+            return INT_MAX;
+        }
+        long dvd = labs(dividend), dvs = labs(divisor), ans = 0;
+        int sign = dividend > 0 ^ divisor > 0 ? -1 : 1;
+        while (dvd >= dvs) {
+            long temp = dvs, m = 1;
+            while (temp << 1 <= dvd) {
+                temp <<= 1;
+                m <<= 1;
+            }
+            dvd -= temp;
+            ans += m;
+        }
+        return sign * ans;
     }
 };
