@@ -2,11 +2,12 @@ class Solution {
 public:
     int binExpo(int a, int b){
         int res=1,mod=1e9+7;
+        long long A=a;
         while(b){
-            if(b&1)res*=a;
+            if(b&1)res*=A;
             res%=mod;
-            a*=a;
-            a%=mod;
+            A*=A;
+            A%=mod;
             b>>=1;
         }
         return res;
@@ -19,6 +20,7 @@ public:
             st.insert(s.substr(i,k));
         }
         
-        return st.size()==pow(2,k);
+        //return st.size()==pow(2,k);
+        return st.size()==binExpo(2,k);
     }
 };
