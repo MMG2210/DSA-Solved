@@ -21,6 +21,6 @@ public:
         }
         
         //return st.size()==pow(2,k);
-        return st.size()==binExpo(2,k);
+        return st.size()==(1<<k);
     }
 };
