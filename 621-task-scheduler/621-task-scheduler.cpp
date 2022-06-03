@@ -1,8 +1,9 @@
 class Solution {
 public:
-    int cnt[26], maxcnt = 0, e = 0,sz;
+    int maxcnt = 0, e = 0,sz;
     int leastInterval(vector<char>& tasks, int n) {
-        memset(cnt,0,sizeof(cnt));
+        //memset(cnt,0,sizeof(cnt));
+        vector<int> cnt(26,0);
         sz=tasks.size();
         for (char c : tasks) cnt[c-'A']++;
         for (int i = 0; i < 26; i++) maxcnt = max(maxcnt, cnt[i]);
