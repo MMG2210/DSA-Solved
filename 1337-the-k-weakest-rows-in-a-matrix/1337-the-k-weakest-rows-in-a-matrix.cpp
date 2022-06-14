@@ -4,7 +4,6 @@
 class Solution {
 public:
     int M,N;
-    
     int findLast1(vector<vector<int>>& mat, int i){
         int l=0,r=N-1,res=0;
         while(l<=r){
@@ -15,17 +14,14 @@ public:
             }
             else r=m-1;
         }
-        return l;
+        return r;
     }
-
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
         vector<int> res;
         M=mat.size();
         N=mat[0].size();
         priority_queue<pii> pq;
         for(int i=0;i<M;i++){
-            // int j=0;
-            // while(j<N && mat[i][j]==1)j++;
             pq.push({findLast1(mat,i),i});
             if(pq.size()>k)pq.pop();
         }
