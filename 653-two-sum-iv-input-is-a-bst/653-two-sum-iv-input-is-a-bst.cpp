@@ -11,18 +11,19 @@
  */
 class Solution {
 public:
-    bool dfs(TreeNode* root, int k, unordered_map<int,int>& mp){
-        if(!root)return 0;
+    bool dfs(TreeNode* curr, TreeNode* root, int k){
+        if(!curr)return 0;
         
-        if(mp.find(k-root->val)!=mp.end())return 1;
-        else{
-            mp[root->val]++;
-            return dfs(root->left,k,mp)||dfs(root->right,k,mp);
-        }
+        return search(root, curr,k-curr->val)||dfs(curr->left,root,k)||dfs(curr->right,root,k);
+    }
+    
+    bool search(TreeNode* curr,TreeNode* root, int k){
+        if(!curr)return false;
+        if(curr!=root && curr->val==k)return 1;
+        else return search(curr->left,root,k)||search(curr->right,root,k);
     }
     
     bool findTarget(TreeNode* root, int k) {
-        unordered_map<int,int> mp;
-        return dfs(root, k, mp);
+        return dfs(root, root, k);
     }
 };
