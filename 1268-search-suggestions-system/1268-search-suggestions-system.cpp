@@ -11,7 +11,7 @@ public:
             vector<string> suggest;
             it = lower_bound(it,A.end(),cur);
             for(int i=0;i<3 && (it+i)!=A.end();i++){
-                string& s = *(it+i);
+                string s = *(it+i);
                 if(s.find(cur))break;
                 suggest.push_back(s);
             }
