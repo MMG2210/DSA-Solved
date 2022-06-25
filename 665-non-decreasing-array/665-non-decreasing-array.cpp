@@ -1,12 +1,15 @@
 class Solution {
 public:
-    bool checkPossibility(vector<int>& a) {
-        int modified = 0;
-        for (int i = 1, prev = a[0]; i < a.size(); i++) {
-            if (a[i] < prev && modified++) return false;
-            if (a[i] < prev && i - 2 >= 0 && a[i - 2] > a[i]) continue;
-            prev = a[i];
+    bool checkPossibility(vector<int>& nums) {
+        int shift=0;
+        for(int i=1;i<nums.size();i++){
+            if(nums[i-1]>nums[i]){
+                shift++;
+                if(i-2<0 || nums[i-2]<=nums[i])nums[i-1]=nums[i];
+                else nums[i]=nums[i-1];
+            }
         }
-        return true;
+        
+        return shift<=1;
     }
 };
