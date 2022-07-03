@@ -1,20 +1,16 @@
 class Solution {
 public:
     int peopleAwareOfSecret(int n, int delay, int forget) {
-    long long sharing = 0, mod = 1000000007;
-    deque<int> d{1}, f{1};
-    while (--n > 0) {
-        if (d.size() >= delay) {
-            sharing = (sharing + d.front()) % mod;
-            d.pop_front();
+        vector<long long> dp(n+1,0);
+        dp[1]=1;
+        int share=0, res=0, mod=1e9+7;
+        
+        for(int i=2;i<=n;i++){
+            dp[i] = share = (share + dp[max(0,i-delay)] + mod - dp[max(0,i-forget)])%mod;
         }
-        if (f.size() >= forget) {
-            sharing = (mod + sharing - f.front()) % mod;
-            f.pop_front();
+        for(int i=n-forget+1;i<=n;i++){
+            res = (res + dp[i])%mod;
         }
-        d.push_back(sharing);
-        f.push_back(sharing);
+        return res;
     }
-    return (sharing + accumulate(begin(d), end(d), 0LL)) % mod;
-}
 };
