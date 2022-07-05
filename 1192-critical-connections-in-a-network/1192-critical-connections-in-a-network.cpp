@@ -35,7 +35,6 @@ public:
     
     void tarjans(int curr, int parent, int time, vector<vector<int>>& adj, vector<int>& low, vector<vector<int>>& res){
         low[curr]=time++;
-        
         for(auto& x:adj[curr]){
             if(x==parent)continue;
             if(low[x]==0){
