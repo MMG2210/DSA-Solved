@@ -1,25 +1,40 @@
 class Solution {
-public:
-    bool dfs(vector<int>& m, vector<int>& s, int i, int& target){
-        if(i==m.size()){
-            return s[0]==s[1] && s[1]==s[2] && s[2]==s[3];
+    bool helper(int cur, int tar, int cnt, int k, int mask, vector<int>& s, vector<int>& dp)
+    {
+        if (cnt == k)
+            return true;
+        if (dp[mask] != -1) return dp[mask];
+        int n = s.size();
+        bool res = false;
+        for (int i = 0; i < n; i++)
+        {
+            if (mask & (1<<i)) continue;
+            if (cur+s[i] > tar) break;
+            if (cur+s[i] == tar)
+            {
+                mask^=1<<i;
+                res |= helper(0, tar, cnt+1, k, mask, s, dp);
+                mask^=1<<i;
+            }
+            else
+            {
+                mask^=1<<i;
+                res |= helper(cur+s[i], tar, cnt, k, mask, s, dp);
+                mask^=1<<i;
+            }
+            if (res) break;
         }
-        for(int j=0;j<4;j++){
-            if(s[j]+m[i]>target)continue;
-            s[j]+=m[i];
-            if(dfs(m,s,i+1,target))return true;
-            s[j]-=m[i];
-        }
-        return false;
+        dp[mask] = res?1:0;
+        return res;
     }
-    
-    bool makesquare(vector<int>& matchsticks) {
-        if(matchsticks.size()==0)return 0;
-        int sum=accumulate(matchsticks.begin(), matchsticks.end(), 0);
-        if(sum%4)return false;
-        vector<int> s(4,0);
-        sort(matchsticks.begin(), matchsticks.end(), greater<int>());
+public:
+    bool makesquare(vector<int>& s) {
+        int sum = 0, n = s.size();
+        for (int i:s) sum+=i;
+        if (sum%4 != 0) return false;
         sum/=4;
-        return dfs(matchsticks, s, 0, sum);
+        sort(s.begin(), s.end());
+        vector<int> dp(1<<n, -1);
+        return helper(0, sum, 0, 4, 0, s, dp);
     }
 };
