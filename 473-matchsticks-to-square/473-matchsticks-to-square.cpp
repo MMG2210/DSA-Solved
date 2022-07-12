@@ -1,40 +1,38 @@
 class Solution {
-    bool helper(int cur, int tar, int cnt, int k, int mask, vector<int>& s, vector<int>& dp)
-    {
-        if (cnt == k)
-            return true;
-        if (dp[mask] != -1) return dp[mask];
-        int n = s.size();
-        bool res = false;
-        for (int i = 0; i < n; i++)
-        {
-            if (mask & (1<<i)) continue;
-            if (cur+s[i] > tar) break;
-            if (cur+s[i] == tar)
-            {
-                mask^=1<<i;
-                res |= helper(0, tar, cnt+1, k, mask, s, dp);
-                mask^=1<<i;
-            }
-            else
-            {
-                mask^=1<<i;
-                res |= helper(cur+s[i], tar, cnt, k, mask, s, dp);
-                mask^=1<<i;
-            }
-            if (res) break;
-        }
-        dp[mask] = res?1:0;
-        return res;
-    }
 public:
-    bool makesquare(vector<int>& s) {
-        int sum = 0, n = s.size();
-        for (int i:s) sum+=i;
-        if (sum%4 != 0) return false;
+    int n;
+    vector<int> dp;
+    
+    bool solve(vector<int>& m, int& target, int mask, int i, int sum, int sides){
+        if(i==sides)return 1;
+        if(dp[mask]!=-1)return dp[mask];
+        
+        bool res=0;
+        for(int j=0;j<n;j++){
+            if(mask&1<<j)continue;
+            if(m[j]+sum>target)break;
+            if(m[j]+sum==target){
+                mask^=1<<j;
+                res|=solve(m, target, mask, i+1, 0, sides);
+                mask^=1<<j;
+            }
+            else{
+                mask^=1<<j;
+                res|=solve(m, target, mask, i, sum+m[j], sides);
+                mask^=1<<j;
+            }
+            if(res)break;
+        }
+        return dp[mask] = res;
+    }
+    
+    bool makesquare(vector<int>& matchsticks) {
+        int sum=accumulate(matchsticks.begin(), matchsticks.end(), 0);
+        sort(matchsticks.begin(), matchsticks.end(), greater<int>());
+        if(!sum || sum%4)return false;
         sum/=4;
-        sort(s.begin(), s.end());
-        vector<int> dp(1<<n, -1);
-        return helper(0, sum, 0, 4, 0, s, dp);
+        n=matchsticks.size();
+        dp.resize(1<<n,-1);
+        return solve(matchsticks, sum, 0, 0, 0, 4);
     }
 };
