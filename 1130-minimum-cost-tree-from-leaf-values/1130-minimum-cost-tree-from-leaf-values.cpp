@@ -1,13 +1,15 @@
 class Solution {
 public:
     int n;
-    map<pair<int,int>,pair<int,int>> dp;
+    //map<pair<int,int>,pair<int,int>> dp;
+    vector<vector<pair<int,int>>> dp;
     
     pair<int,int> solve(vector<int>& arr,int l,int r){
         if(l==r){
             return {0,arr[l]};
         }
-        if(dp.find({l,r})!=dp.end())return dp[{l,r}];
+        //if(dp.find({l,r})!=dp.end())return dp[{l,r}];
+        if(dp[l][r].first!=-1)return dp[l][r];
         
         pair<int,int> res={1e9,0};
         for(int i=l;i<r;i++){
@@ -19,11 +21,13 @@ public:
                 res.second=max(leftRes.second, rightRes.second);
             }
         }
-        return dp[{l,r}] = res;
+        //return dp[{l,r}] = res;
+        return dp[l][r]=res;
     }
     
     int mctFromLeafValues(vector<int>& arr) {
         n=arr.size();
+        dp.resize(n,vector<pair<int,int>>(n,{-1,-1}));
         return solve(arr,0,n-1).first;
     }
 };
