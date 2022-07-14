@@ -1,14 +1,12 @@
 class Solution {
 public:
     int n;
-    //map<pair<int,int>,pair<int,int>> dp;
     vector<vector<pair<int,int>>> dp;
     
     pair<int,int> solve(vector<int>& arr,int l,int r){
         if(l==r){
             return {0,arr[l]};
         }
-        //if(dp.find({l,r})!=dp.end())return dp[{l,r}];
         if(dp[l][r].first!=-1)return dp[l][r];
         
         pair<int,int> res={1e9,0};
@@ -21,7 +19,6 @@ public:
                 res.second=max(leftRes.second, rightRes.second);
             }
         }
-        //return dp[{l,r}] = res;
         return dp[l][r]=res;
     }
     
