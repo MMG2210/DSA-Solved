@@ -4,11 +4,6 @@ public:
         vector<string> res;
         int patLen=pattern.size();
         unordered_set<char> uniqueChars(pattern.begin(),pattern.end());
-        // vector<int> chrFrq(26,0);
-        // unordered_map<int,int> patSz;
-        // for(char& c:pattern)chrFrq[c-'a']++;
-        // for(int& i:chrFrq)patSz[i]++;
-        
         for(string& w:words){
             if(w.size()!=patLen)continue;
             bool valid=true;
