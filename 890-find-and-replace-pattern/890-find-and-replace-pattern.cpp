@@ -26,9 +26,9 @@ public:
         string res="";
         for(char& c:w)if(!map.count(c))map[c]=map.size();
         for(int i=0;i<w.size();i++){
-            w[i]='a'+map[w[i]];
+            res.push_back('a'+map[w[i]]);
         }
-        return w;
+        return res;
     }
     vector<string> findAndReplacePattern(vector<string>& words, string p){
         vector<string> res;
