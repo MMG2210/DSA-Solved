@@ -36,7 +36,7 @@ public:
                for(int j=1;j<n;j++){
                    cur[j]=cur[j-1]+pre[j];
                }
-               pre=cur;
+               swap(pre,cur);
            }
            return pre[n-1];
        }
