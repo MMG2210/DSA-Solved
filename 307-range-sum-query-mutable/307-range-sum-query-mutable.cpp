@@ -71,7 +71,7 @@ public:
         return update(0,n-1,0,index,val);
     }
     
-    void update(int start, int end, int i, int ind, int val){
+    void update(int start, int end, int i, int& ind, int& val){
         if(start==end){
             st[i]=val;
             return;
@@ -90,7 +90,7 @@ public:
         return query(0,n-1,0,l,r);
     }
     
-    int query(int start, int end, int i, int l, int r){
+    int query(int start, int end, int i, int& l, int& r){
         //Non-overlapping condition
         if(start>r || end<l)return 0;
         //Full overlapping
@@ -98,7 +98,7 @@ public:
         int mid = start + (end-start)/2;
         return query(start,mid,2*i+1,l,r) + query(mid+1,end,2*i+2,l,r);
     }
-};
+};//Done using segment tree. Hence build takes O(N) and each query takes O(logN)
 
 /**
  * Your NumArray object will be instantiated and called as such:
