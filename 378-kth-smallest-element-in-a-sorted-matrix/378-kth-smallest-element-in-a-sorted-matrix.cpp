@@ -1,6 +1,6 @@
 class Solution {
 public:
-    /*int kthSmallest(vector<vector<int>>& matrix, int k) {
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
         priority_queue<int> pq;
         int n = matrix.size();
         for(int i=0;i<n;i++){
@@ -16,9 +16,9 @@ public:
             }
         }
         return pq.top();
-        TC = O(n*n*logk) SC = O(k)
-    }*/
-    int kthSmallest(vector<vector<int>>& matrix, int k){
+        //TC = O(n*n*logk) SC = O(k)
+    }
+    /*int kthSmallest(vector<vector<int>>& matrix, int k){
         int n =matrix.size();
         int low = matrix[0][0];
         int high = matrix[n-1][n-1];
@@ -33,5 +33,5 @@ public:
         }
         return low;
     //TC = O(n*logk) SC = O(1)
-    }
+    }*/
 };
