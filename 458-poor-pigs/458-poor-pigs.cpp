@@ -21,21 +21,23 @@
 class Solution {
 public:
     int rounds;
-    int mpow(int a, int b){
+    const int MOD=1e9+7;
+    int mpow(long long a, int b){
         int res=1;
         while(b){
-            if(b&1)res*=a;
+            if(b&1)res = (res*a)%MOD;
             a*=a;
+            a%=MOD;
             b>>=1;
         }
-        return res;
+        return res%MOD;
     }
     int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
         int low=0, high=buckets, rounds = (minutesToTest/minutesToDie)+1;
         int res=INT_MAX;
         while(low<=high){
             int pigs=(low+high)>>1;
-            if(pow(rounds,pigs)>=buckets){
+            if(mpow(rounds,pigs)>=buckets){
                 res=pigs;
                 high=pigs-1;
             }
