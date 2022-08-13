@@ -9,8 +9,7 @@ public:
         vector<int> res;
         for(int i=0;i<s.size()-N*len+1;i++){
             for(int j=i;j<i+N*len;j+=len){
-                string t = s.substr(j,len);
-                temp[t]++;
+                temp[s.substr(j,len)]++;
             }
             bool flag=true;
             for(auto [str,cnt] : m){
