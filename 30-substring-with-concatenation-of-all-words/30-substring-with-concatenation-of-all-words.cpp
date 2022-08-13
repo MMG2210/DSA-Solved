@@ -12,8 +12,8 @@ public:
                 temp[s.substr(j,len)]++;
             }
             bool flag=true;
-            for(auto [str,cnt] : m){
-                if(temp[str]!=cnt){
+            for(auto &it: m){
+                if(temp[it.first]!=it.second){
                     flag=false;
                     break;
                 }
