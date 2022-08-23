@@ -30,6 +30,7 @@ public:
         slow = reverse(slow);
         while(head && slow){
             if(slow->val != head->val)return false;
+            if(head==slow)return true;
             head=head->next;
             slow=slow->next;
         }
