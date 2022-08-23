@@ -10,39 +10,11 @@
  */
 class Solution {
 public:
-    int getLength(ListNode* head){
-        int len=0;
-        while(head){
-            len++;
-            head=head->next;
-        }
-        return len;
-    }
-    
-    ListNode* reverse(ListNode* head, int len){
-        ListNode* dummy = new ListNode(0);
-        dummy->next=head;
-        ListNode *prev=NULL,*cur=dummy->next,*next=NULL;
-        int half=len/2;
-        while(half-- && cur){
-            prev=cur;
-            cur=cur->next;
-        }
-        while(cur){
-            next=cur->next;
-            cur->next=prev;
-            prev=cur;
-            cur=next;
-        }
-        
-        return dummy->next;
-    }
-    
     ListNode* reverse(ListNode* head){
-        ListNode *prev=NULL, *cur=head, *next=NULL;
+        ListNode *prev=nullptr, *cur=head, *next=nullptr;
         while(cur){
             next=cur->next;
-            cur->next=prev;
+            cur->next = prev;
             prev=cur;
             cur=next;
         }
@@ -50,15 +22,16 @@ public:
     }
     
     bool isPalindrome(ListNode* head) {
-        vector<int> a;
-        while(head){
-            a.push_back(head->val);
-            head=head->next;
+        ListNode *fast=head,*slow=head;
+        while(fast && fast->next){
+            fast=fast->next->next;
+            slow=slow->next;
         }
-        int len=a.size();
-        int i=0,j=len-1;
-        while(i<j){
-            if(a[i++]!=a[j--])return false;
+        slow = reverse(slow);
+        while(head && slow){
+            if(slow->val != head->val)return false;
+            head=head->next;
+            slow=slow->next;
         }
         return true;
     }
