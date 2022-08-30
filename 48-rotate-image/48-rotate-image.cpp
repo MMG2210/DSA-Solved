@@ -1,10 +1,9 @@
 class Solution {
 public:
     void rotate(vector<vector<int>>& a) {
-        int n = a.size();
         reverse(a.begin(),a.end());
-        for(int i=0;i<n;i++){
-            for(int j=i+1;j<n;j++){
+        for(int i=0;i<a.size();i++){
+            for(int j=0;j<i;j++){
                 swap(a[i][j],a[j][i]);
             }
         }
