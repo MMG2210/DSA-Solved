@@ -6,18 +6,16 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        res = []
-        
         def count(root, maxi):
             if root==None:
-                return
+                return 0
             
+            good=0
             if root.val>=maxi:
-                res.append(root)
-                maxi=root.val
+                good=1
+            maxi=max(root.val,maxi)
             
-            count(root.left,maxi)
-            count(root.right,maxi)
+            return good+count(root.left,maxi)+count(root.right,maxi)
             
-        count(root,-100000)
-        return len(res)
+        return count(root,-100000)
+        
