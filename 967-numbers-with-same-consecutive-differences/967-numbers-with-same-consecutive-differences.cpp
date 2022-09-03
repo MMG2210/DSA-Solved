@@ -1,7 +1,7 @@
 class Solution {
 public:
-    set<int> st;
-    
+    unordered_set<int> st;
+    vector<int> res;
     void recur(int n, int k, int t){
         if(n==0){
             st.insert(t);
@@ -24,7 +24,6 @@ public:
     }
     
     vector<int> numsSameConsecDiff(int n, int k) {
-        vector<int> res;
         for(int i=1;i<=9;i++){
             recur(n-1,k,i);
         }
