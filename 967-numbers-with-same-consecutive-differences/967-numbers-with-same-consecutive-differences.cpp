@@ -1,33 +1,20 @@
 class Solution {
 public:
-    set<int> st;
-    vector<int> res;
-    void recur(int n, int k, int t){
-        if(n==0){
-            st.insert(t);
-            return;
-        }
-        int b = t%10;
-        t*=10;
-        int nxt = k+b;
-        if(k+b<10){
-            t+=nxt;
-            recur(n-1,k,t);
-            t/=10;
-            t*=10;
-        }
-        nxt = b-k;
-        if(nxt>=0){
-            t+=nxt;
-            recur(n-1,k,t);
-        }
-    }
-    
     vector<int> numsSameConsecDiff(int n, int k) {
-        for(int i=1;i<=9;i++){
-            recur(n-1,k,i);
+        vector<int> cur = {1,2,3,4,5,6,7,8,9};
+        for(int i=0;i<n-1;i++){
+            vector<int> cur2;
+            for(int x:cur){
+                int y = x%10;
+                if(y+k<10){
+                    cur2.push_back(x*10+y+k);
+                }
+                if(k>0 && y-k>=0){
+                    cur2.push_back(x*10+y-k);
+                }
+            }
+            cur=cur2;
         }
-        for(auto it:st)res.push_back(it);
-        return res;
+        return cur;
     }
 };
