@@ -1,6 +1,6 @@
 class Solution {
 public:
-    unordered_set<int> st;
+    set<int> st;
     vector<int> res;
     void recur(int n, int k, int t){
         if(n==0){
