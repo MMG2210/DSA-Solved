@@ -11,22 +11,19 @@
  */
 class Solution {
 public:
-    int getSum(TreeNode* root){
-        if(!root)return 0;
-        return root->val+getSum(root->left)+getSum(root->right);
-    }
     
-    void helper(TreeNode* root){
-        if(!root)return;
-        if(getSum(root->left)==0)root->left=nullptr;
-        else helper(root->left);
-        if(getSum(root->right)==0)root->right=nullptr;
-        else helper(root->right);
+    TreeNode* helper(TreeNode* root){
+       if(root!=NULL){
+           root->left=helper(root->left);
+           root->right=helper(root->right);
+           if(root->val==0){
+               if(root->left==nullptr && root->right==nullptr)root=nullptr;
+           }
+        }
+        return root;
     }
     
     TreeNode* pruneTree(TreeNode* root) {
-        helper(root);
-        if(getSum(root)==0)return nullptr;
-        return root;
+        return helper(root);
     }
 };
