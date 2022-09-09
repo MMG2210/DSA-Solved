@@ -11,7 +11,7 @@ public:
             if(p[i][1]<def){
                 res++;
             }
-            def=max(def,p[i][1]);
+            else def=p[i][1];
         }
         return res;
     }
