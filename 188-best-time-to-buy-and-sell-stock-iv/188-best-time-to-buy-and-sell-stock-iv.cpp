@@ -1,31 +1,19 @@
 class Solution {
 public:
+    vector<vector<int>> dp;
+    int N,kt;
     
-    int solve(vector<int>& prices, int kt, int ind, int cur, vector<vector<int>>& dp){
-        if(cur==kt)return 0;
-        if(ind==prices.size())return 0;
-        
-        if(dp[ind][cur]!=-1)return dp[ind][cur];
-        
-        if(cur%2==0){//We can choose to buy
-            int buyVal,leaveVal;
-            buyVal=-prices[ind]+solve(prices,kt,ind+1,cur+1,dp);
-            leaveVal=solve(prices,kt,ind+1,cur,dp);
-            return dp[ind][cur] = max(buyVal,leaveVal);
-        }
-        else{//We can chose to sell
-            int sellVal,leaveVal;
-            sellVal=prices[ind]+solve(prices,kt,ind+1,cur+1,dp);
-            leaveVal=solve(prices,kt,ind+1,cur,dp);
-            return dp[ind][cur] = max(sellVal,leaveVal);
-        }
+    int solve(int ind, int cur, vector<int>& p){
+        if(cur>kt || ind==N)return 0;
+        if(dp[cur][ind]!=-1)return dp[cur][ind];
+        int act = p[ind]*(cur&1?1:-1)+solve(ind+1,cur+1,p);
+        int hold = solve(ind+1,cur,p);
+        return dp[cur][ind]=max(act,hold);
     }
     
-    
     int maxProfit(int k, vector<int>& prices) {
-        //vector<vector<vector<int>>> dp(prices.size()+1,vector<int>(k+1,vector<int>(2,-1)));
-        int kt=2*k;//Max possible transcations is 2 x No of allowed transactions
-        vector<vector<int>> dp(prices.size()+1,vector<int>(kt,-1));
-        return solve(prices,kt,0,0,dp);
+        kt=2*k, N=prices.size();
+        dp.resize(kt+1,vector<int>(N+1,-1));
+        return solve(0,0,prices);
     }
 };
