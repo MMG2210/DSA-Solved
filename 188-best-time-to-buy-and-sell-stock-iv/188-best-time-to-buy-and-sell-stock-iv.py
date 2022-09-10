@@ -3,7 +3,7 @@ class Solution:
         k=k*2
         N = len(prices)
         dp=[]
-        for i in range(k+1): dp.append(-100000000)
+        for i in range(k+1): dp.append(-100005)
         dp[0]=0
         
         for j in range(N):
