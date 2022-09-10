@@ -7,8 +7,7 @@ class Solution:
         dp[0]=0
         
         for j in range(N):
-            for i in range(0,k+1,2):
-                if i+2>k: break
+            for i in range(0,k-1,2):
                 dp[i+1] = max(dp[i+1],dp[i]-prices[j])
                 dp[i+2] = max(dp[i+2],dp[i+1]+prices[j])
         
