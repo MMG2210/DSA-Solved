@@ -1,24 +1,23 @@
 class Solution {
-public:
+private:
     int m,t;
-    vector<int> dp;
-    
-    bool solve(int mask, int score){
-        if(dp[mask]!=-1)return dp[mask];
-        for(int i=0;i<m;i++){
-            int cmask=1<<i;
-            if(!(mask&cmask)){
-                if(score+i+1>=t or solve(mask|cmask,score+i+1)==false)return dp[mask]=true;
-            }
+    vector<vector<int>> dp;
+    bool game(int mask,int player,int score){
+        if(dp[player][mask]!=-1) return dp[player][mask];
+        for(int i=0;i<m;i++)
+        {
+            int cmask = 1<<i;
+            if( (mask&cmask) == 0 )
+                    if(score+i+1 >= t or game((mask|cmask),(player^1),score+i+1)==false ) return dp[player][mask]=1;
         }
-        return dp[mask]=0;
+        return dp[player][mask]=0;
     }
-    
+public:
     bool canIWin(int maxChoosableInteger, int desiredTotal) {
         m=maxChoosableInteger;
         t=desiredTotal;
-        if((m*(m+1))>>1<t)return false;
-        dp.resize(1<<m,-1);
-        return solve(0,0);
+        if((m*(m+1))/2 < t) return false;
+        dp.resize(2,vector<int>(1<<m,-1));
+        return game(0,0,0);
     }
 };
