@@ -14,7 +14,6 @@ public:
     int res=0;
     
     void solve(TreeNode* root, int& mask){
-        if(!root)return;
         if(!root->left && !root->right){
             int odd=0;
             for(int i=0;i<31;i++){
