@@ -12,7 +12,7 @@ public:
             else if(nums[i]&1 && val&1)rsum+=(nums[i]+val);
             else if(!(nums[i]&1) && val&1)rsum-=nums[i];
             nums[i]+=val;
-            res.push_back(rsum);
+            res.emplace_back(rsum);
         }
         return res;
     }
