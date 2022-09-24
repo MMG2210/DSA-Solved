@@ -12,6 +12,6 @@ class Solution:
             P.append(N.val)
             if (N.left,N.right) == (None,None) and sum(P) == S: A.append(list(P))
             else: dfs(N.left), dfs(N.right)
-            P.pop()
+            del P[-1]
         dfs(R)
         return A
