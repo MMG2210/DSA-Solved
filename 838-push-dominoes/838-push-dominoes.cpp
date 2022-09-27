@@ -1,9 +1,9 @@
 class Solution {
 public:
-    Solution(){
-        ios_base::sync_with_stdio(false);
-        cin.tie(NULL);
-    }
+    // Solution(){
+    //     ios_base::sync_with_stdio(false);
+    //     cin.tie(NULL);
+    // }
     string pushDominoes(string& s) {
        int n = s.length();
         vector<int> l(n, 0), r(n, 0);
