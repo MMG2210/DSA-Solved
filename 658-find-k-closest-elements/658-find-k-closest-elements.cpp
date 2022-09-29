@@ -4,9 +4,9 @@
 class Solution {
 public:
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
-        int n = arr.size(), L=0, R=n-k;
+        int n = arr.size(), L=0, R=n-k,mid;
         while(L<R){
-            int mid = (L+R)>>1;
+            mid = (L+R)>>1;
             if(arr[mid] == arr[mid+k]){
                 if(arr[mid]<x)L=mid+1;
                 else R=mid;
