@@ -6,14 +6,14 @@
 #         self.right = right
 class Solution:
     def addOneRow(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
-        if root is None:return root
+        if root==None:return root
         if depth==1:
             newNode = TreeNode(val)
             newNode.left=root
             return newNode
         
         def solve(root,val,depth,curDepth):
-            if root is None: return
+            if root==None: return
             if depth-1>curDepth:
                 solve(root.left,val,depth,curDepth+1)
                 solve(root.right,val,depth,curDepth+1)
