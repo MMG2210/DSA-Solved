@@ -1,8 +1,5 @@
 class Solution {
     public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
-        String s1 = new String(), s2 = new String();
-        for(String s:word1)s1+=s;
-        for(String s:word2)s2+=s;
-        return s1.equals(s2);
+        return (String.join("",word1).equals(String.join("",word2)));
     }
 }
