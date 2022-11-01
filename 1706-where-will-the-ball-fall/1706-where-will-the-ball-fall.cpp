@@ -9,9 +9,9 @@ public:
     }
     vector<int> findBall(vector<vector<int>>& grid) {
         M = grid.size(), N=grid[0].size();
-        vector<int> res(N);
+        vector<int> res;
         for(int j=0;j<N;j++){
-            res[j] = dfs(grid,0,j);
+            res.push_back(dfs(grid,0,j));
         }
         return res;
     }
