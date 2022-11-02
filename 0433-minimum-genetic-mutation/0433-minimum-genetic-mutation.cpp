@@ -7,10 +7,7 @@ public:
         queue<pair<string,int>> q;//Queue of (string and its level)
         q.push({start,0});
         vector<char> nxt;
-        nxt.push_back('A');
-        nxt.push_back('C');
-        nxt.push_back('G');
-        nxt.push_back('T');
+        nxt.push_back('A');nxt.push_back('C');nxt.push_back('G');nxt.push_back('T');
         while(!q.empty()){
             int sz = q.size();
             while(sz--){
