@@ -18,7 +18,7 @@ public:
                     for(char& a:nxt){
                         if(c==a)continue;
                         node.F[i] = a;
-                        if(val.find(node.F)!=val.end())q.push({node.F,node.S+1});
+                        if(val.count(node.F))q.push({node.F,node.S+1});
                         node.F[i]=c;
                     }
                 }
@@ -28,7 +28,7 @@ public:
     }
     int minMutation(string start, string end, vector<string>& bank) {
         val = unordered_set<string>(bank.begin(),bank.end());
-        if(val.find(end)==val.end())return -1;
+        if(!val.count(end))return -1;
         int res = bfs(start, end);
         return res==1e9?-1:res;
     }
