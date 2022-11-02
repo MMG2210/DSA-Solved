@@ -21,9 +21,7 @@ public:
                     for(char& a:nxt){
                         if(c==a)continue;
                         node.F[i] = a;
-                        if(val.find(node.F)!=val.end()){
-                            q.push({node.F,node.S+1});
-                        }
+                        if(val.find(node.F)!=val.end())q.push({node.F,node.S+1});
                         node.F[i]=c;
                     }
                 }
