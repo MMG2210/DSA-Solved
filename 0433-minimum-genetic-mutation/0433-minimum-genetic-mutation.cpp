@@ -4,14 +4,13 @@ class Solution {
 public:
     unordered_set<string> val;
     int bfs(string& start, string& end){
-        int lvl=-1;
+        int lvl=-1,sz;
         queue<string> q;//Queue of (string and its level)
         q.push(start);
         vector<char> nxt;
         nxt.push_back('A');nxt.push_back('C');nxt.push_back('G');nxt.push_back('T');
         while(!q.empty()){
-            lvl++;
-            int sz = q.size();
+            lvl++;sz = q.size();
             while(sz--){
                 auto node = q.front();q.pop();
                 if(node == end)return lvl;
