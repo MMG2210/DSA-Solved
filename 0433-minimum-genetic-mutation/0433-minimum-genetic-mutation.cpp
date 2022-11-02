@@ -26,7 +26,7 @@ public:
         }
         return 1e9;
     }
-    int minMutation(string start, string end, vector<string>& bank) {
+    int minMutation(string& start, string& end, vector<string>& bank) {
         val = unordered_set<string>(bank.begin(),bank.end());
         if(!val.count(end))return -1;
         int res = bfs(start, end);
