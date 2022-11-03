@@ -1,21 +1,25 @@
 class Solution {
 public:
     int longestPalindrome(vector<string>& words) {
-        int res=0;
-        multiset<string> mp;
-        for(auto& i:words){
-            string cur = i;
-            swap(cur[0],cur[1]);
-            if(mp.find(cur)!=mp.end()){
+        int res=0,mid=0;
+        unordered_map<string,int> mp;
+        for(auto& w:words)mp[w]++;
+        for(auto& x:words){
+            string w = x;
+            swap(w[0],w[1]);
+            if(w!=x and mp[w]>0 and mp[x]>0){
                 res+=4;
-                mp.erase(mp.find(cur));
+                mp[x]--;
+                mp[w]--;
             }
-            else mp.insert(i);
-        }
-        for(auto& s:mp){
-            if(s[0]==s[1]){
+            else if(w==x and mp[x]>1){
+                res+=4;
+                mp[x]-=2;
+            }
+            else if(w==x and mid==0 and mp[x]>0){
+                mp[x]--;
                 res+=2;
-                break;
+                mid=1;
             }
         }
         return res;
