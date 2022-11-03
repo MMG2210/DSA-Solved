@@ -2,7 +2,7 @@ class Solution {
 public:
     int longestPalindrome(vector<string>& words) {
         int res=0;
-        unordered_multiset<string> mp;
+        multiset<string> mp;
         for(auto& i:words){
             string cur = i;
             swap(cur[0],cur[1]);
